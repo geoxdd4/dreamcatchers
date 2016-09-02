@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<h1 class="center">TODO</h1>
+<h1 class="center">my store</h1>
 
 <?php
 
