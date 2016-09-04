@@ -14,7 +14,7 @@ echo '<a href="'.site_url('').'">Contactez-nous</a> | ';
 
 echo '<a href="'.site_url('').'">Connnexion</a> | ';
 
-echo '<a href="'.site_url('').'">Panier</a> | ';
+echo '<a href="'.site_url('cart').'">Panier</a> | ';
 
 ?>
 

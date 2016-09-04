@@ -21,7 +21,7 @@ class ControllerProducts extends CI_Controller {
 	public function index()
 	{
 				
-		$data['title'] = "Products";
+		$data['title'] = "Produits";
 		$data['contents'] = "ViewProducts";
 		
 		$data['products'] = $this->ModelProduct->get();
