@@ -24,6 +24,8 @@ class ControllerProducts extends CI_Controller {
 		$data['title'] = "Products";
 		$data['contents'] = "ViewProducts";
 		
+		$data['products'] = $this->ModelProduct->get();
+		
 		$this->load->view('templates/ViewMain',$data);
 		
 	}
