@@ -15,8 +15,8 @@ Produits
 			echo "<b>Référence</b> : " . $product->reference . "<br/>";
 			echo "<b>Nom</b> : " . $product->name . "<br/>";
 			echo "<b>Prix</b> : " . $product->price . " € TTC<br/>";
-			echo "<a href=".site_url('cart/add/'.$product->reference).">Ajouter au panier</a>";
-			
+			echo "<a href=".site_url('cart/add/'.$product->reference).">Ajouter au panier</a></br>";
+			echo $this->priceutil->format($product->price).' €';
 			echo "</p>";
 		
 	}

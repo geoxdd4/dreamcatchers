@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title><?=$title;?></title>
 	
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="<?= base_url().'assets/css/main_style.css'; ?>">
 	
 </head>
