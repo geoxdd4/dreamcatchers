@@ -51,5 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'ControllerWelcome';
 $route['home'] = 'ControllerWelcome';
+$route['products'] = 'ControllerProducts';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
