@@ -2,23 +2,18 @@
 
 class Cart {
 
-    var $items = Array();
+    var $items = array();
 	
 	public function add( $product ){
 		
 		$reference = $product->reference;
 		
-		if ( $this->productReferenceExists( $product ) ){
-			
-			
-			
+		if ( !array_key_exists( $product->reference, $this->items ) ){
+			$this->items[ $product->reference ] = 1;
 		}else{
-			$cartRow = new row();
-			$cartRow->setProduct( $product );
-			$cartRow->setQuantity( 1 );
-			$items->push( $cartRow );
-		}
-		
+			$quantity = $this->items[ $product->reference ] + 1;
+			$this->items[ $product->reference ] = $quantity ;	
+		}	
 	}
 	
 	public function remove( $product ){
@@ -29,25 +24,8 @@ class Cart {
 		
 	}
 	
-	private function productExists( $product ){
-		
-		$ret = false;
-		
-		foreach( $items as $item ){
-			$productFromCartRow = $item->product;
-			if ( $productFromCartRow->reference == $product->reference ){
-				$ret = true;
-			}
-		}
-		
-		return $ret;
-		
+	public function get(){
+		return $this->items;
 	}
-	
-	private function updateQuantity(){
-		
-	}
-	
-	
 	
 }

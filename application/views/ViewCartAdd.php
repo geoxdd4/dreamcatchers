@@ -7,6 +7,8 @@ Panier
 </h1>
 
 Le produit <?= $reference ?> a bien été ajouté au panier.<br/>
+<?= "Quantité totale : ".unserialize($_SESSION['cart'])->items[$reference]; ?>
+
 
 <br/>
 <a href="<?= site_url('products'); ?>">Continuer mes achats</a> <br/> 

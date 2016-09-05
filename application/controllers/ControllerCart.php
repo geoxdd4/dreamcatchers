@@ -19,34 +19,22 @@ class ControllerCart extends CI_Controller {
 		$data['contents'] = "ViewCartAdd";
 		$data['reference'] = $reference;
 		
-		if ( ! $this->existsInSession() ){
+		$product = new Product();
+		$product->setReference( $reference );
+		$cart = NULL;
+		
+		if ( ! isset( $_SESSION['cart'] ) ){
 			$cart = new Cart();
-			
-			$product = new Product();
-			$product->setReference( $reference );
-			$cart->add( $product );
-			
-			$this->session->set_userdata($this->cartName, $cart );
-			
-			echo 'nouveau panier';
-			
 		}else{
-			
-			
-			echo 'pas besoin de nouveau panier';
-			
-			
-			
+			$cart = unserialize($_SESSION['cart']);
 		}
 		
-		//$this->session->userdata("SESSION_NAME");
-		
+		$cart->add( $product );
+		$_SESSION['cart'] = serialize($cart);
+			
+		//print_r( $_SESSION['cart'] );
 		$this->load->view('templates/ViewMain',$data);
 		
 	}
-	
-	public function existsInSession(){
-		return null !== ( $this->session->userdata($this->cartName) );
-	}
-	
+		
 }
