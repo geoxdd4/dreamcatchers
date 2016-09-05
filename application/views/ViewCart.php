@@ -6,4 +6,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 Panier
 </h1>
 
-<?= $reference; ?>
