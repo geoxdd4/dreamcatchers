@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class PriceUtil {
+class HelperPrice {
 
     public function format( $number )
     {
 		$ret = number_format((float)$number, 2, '.', '');
 		$ret = str_replace( ".", ",",$ret );
-		return $ret;	
+		return $ret . ' €';	
     }
 	
 }

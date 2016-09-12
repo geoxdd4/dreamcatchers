@@ -26,6 +26,8 @@ class ControllerProducts extends CI_Controller {
 		
 		$data['products'] = $this->ModelProduct->get();
 		
+		// gestion erreurs
+		
 		$this->load->view('templates/ViewMain',$data);
 		
 	}

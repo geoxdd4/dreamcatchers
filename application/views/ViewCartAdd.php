@@ -6,8 +6,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 Panier
 </h1>
 
-Le produit <?= $reference ?> a bien été ajouté au panier.<br/>
-<?= "Quantité totale : ".unserialize($_SESSION['cart'])->items[$reference]; ?>
+Produit ajouté avec succès.</br>
+</br>
+
+<?= $productFromDb->name ?> diam <?= $productFromDb->diameter ?> cm</br>
+Quantité : <?= $this->helpersession->getCart()->get()[ $productFromDb->reference ] ?></br>
+Total : <?= $this->helperprice->format($productPriceFromDb) ?></br>
+</br>
+
+Il y a <?= $this->helpersession->getCart()->getQuantity() ?> quantités dans votre panier.</br>
+Il y a <?= $this->helpersession->getCart()->getSize() ?> références dans votre panier.</br>
+
+Total produits : <?= $this->helperprice->format($cartPriceFromDb) ?></br>
+Frais de port : Offerts</br>
+Total : <?= $this->helperprice->format($cartPriceFromDb) ?></br>
 
 
 <br/>

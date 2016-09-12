@@ -14,25 +14,26 @@ class ControllerCart extends CI_Controller {
 	
 	public function add( $reference )
 	{
-				
-		$data['title'] = "Panier - Ajout";
-		$data['contents'] = "ViewCartAdd";
-		$data['reference'] = $reference;
 		
 		$product = new Product();
 		$product->setReference( $reference );
-		$cart = NULL;
-		
-		if ( ! isset( $_SESSION['cart'] ) ){
-			$cart = new Cart();
-		}else{
-			$cart = unserialize($_SESSION['cart']);
-		}
-		
+
+		$cart = $this->helpersession->getCart();		
 		$cart->add( $product );
-		$_SESSION['cart'] = serialize($cart);
-			
-		//print_r( $_SESSION['cart'] );
+		$this->helpersession->setCart( $cart );
+		
+		$productFromDb      = $this->ModelProduct->getByReference( $reference );
+		$productPriceFromDb = $this->ModelCart->getPriceByProduct( $product );
+		$cartPriceFromDb    = $this->ModelCart->getPrice( );
+ 		//gestion erreurs
+
+		$data['title'] = "Panier - Ajout";
+		$data['contents'] = "ViewCartAdd";
+		$data['reference'] = $reference;
+		$data['productFromDb'] = $productFromDb;
+		$data['productPriceFromDb'] = $productPriceFromDb;
+		$data[ 'cartPriceFromDb' ] = $cartPriceFromDb;
+		
 		$this->load->view('templates/ViewMain',$data);
 		
 	}

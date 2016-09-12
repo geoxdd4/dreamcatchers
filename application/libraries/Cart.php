@@ -6,13 +6,13 @@ class Cart {
 	
 	public function add( $product ){
 		
-		$reference = $product->reference;
+		$reference = $product->getReference();
 		
-		if ( !array_key_exists( $product->reference, $this->items ) ){
+		if ( !array_key_exists( $reference, $this->items ) ){
 			$this->items[ $product->reference ] = 1;
 		}else{
-			$quantity = $this->items[ $product->reference ] + 1;
-			$this->items[ $product->reference ] = $quantity ;	
+			$quantity = $this->items[ $reference ] + 1;
+			$this->items[ $reference ] = $quantity ;	
 		}	
 	}
 	
@@ -20,11 +20,25 @@ class Cart {
 		
 	}
 	
-	public function getPrice(){
+	public function getQuantity(){
+		
+		$arrayKeys = array_keys( $this->get() );
+		$total = 0;
+		
+		foreach($arrayKeys as $key){
+			$total += $this->get()[ $key ];
+		}
+		return $total;
+	}
+	
+	public function getSize(){
+		
+		return count( $this->items );
 		
 	}
 	
 	public function get(){
+		$total = 0;
 		return $this->items;
 	}
 	
