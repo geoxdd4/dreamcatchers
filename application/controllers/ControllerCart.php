@@ -8,13 +8,44 @@ class ControllerCart extends CI_Controller {
 	public function index()
 	{	
 		$data['title'] = "Panier";
-		$data['contents'] = "ViewCart";
+		$data['contents'] = "ViewCartSummary";
+		
+		$cart = $this->HelperSession->getCart();
+		
+		
+		
+		
+		//reference
+		//libelle
+		//diam
+		//prix
+		//qte
+		//total
+		
+		
+		
 		$this->load->view('templates/ViewMain',$data);
 	}
 	
 	public function add( $reference )
 	{
+		//20 : reference length as in DB
+		$reference = substr( $reference, 0, 20 );
 		
+		// main info
+		$data['title'] = "Panier - Ajout";
+		$data['reference'] = $reference;
+		
+		//product in db ?
+		$productFromDb      = $this->ModelProduct->getByReference( $reference );
+		//error : unknown product
+		if ( empty( $productFromDb ) ){
+			$data['contents'] = "ViewCartAddError";
+			$this->load->view('templates/ViewMain',$data);
+			return;
+		}
+		
+		//normal process
 		$product = new Product();
 		$product->setReference( $reference );
 
@@ -22,18 +53,13 @@ class ControllerCart extends CI_Controller {
 		$cart->add( $product );
 		$this->helpersession->setCart( $cart );
 		
-		$productFromDb      = $this->ModelProduct->getByReference( $reference );
 		$productPriceFromDb = $this->ModelCart->getPriceByProduct( $product );
 		$cartPriceFromDb    = $this->ModelCart->getPrice( );
- 		//gestion erreurs
-
-		$data['title'] = "Panier - Ajout";
+ 		
 		$data['contents'] = "ViewCartAdd";
-		$data['reference'] = $reference;
 		$data['productFromDb'] = $productFromDb;
 		$data['productPriceFromDb'] = $productPriceFromDb;
 		$data[ 'cartPriceFromDb' ] = $cartPriceFromDb;
-		
 		$this->load->view('templates/ViewMain',$data);
 		
 	}

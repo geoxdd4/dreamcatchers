@@ -2,7 +2,5 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<h1>
-Panier
-</h1>
-
+Récapitulatif | Connexion | Adresse | Livraison | Paiement 
+</br>

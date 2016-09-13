@@ -10,11 +10,11 @@ echo '<a href="'.site_url('').'">Home</a> | ';
 
 echo '<a href="'.site_url('products').'">Produits</a> | ';
 
-echo '<a href="'.site_url('').'">Contactez-nous</a> | ';
+echo '<a href="'.site_url('contact').'">Contactez-nous</a> | ';
 
-echo '<a href="'.site_url('').'">Connnexion</a> | ';
+echo '<a href="'.site_url('connection').'">Connnexion</a> | ';
 
-echo '<a href="'.site_url('cart').'">Panier</a> | ';
+echo '<a href="'.site_url('cart').'">Panier</a>';
 
 ?>
 
