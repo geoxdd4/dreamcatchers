@@ -60,7 +60,7 @@ $autoload['packages'] = array();
 */
 $autoload['libraries'] = array('database', 'session', 'form_validation',
 							   'HelperCart','HelperPrice','HelperSession', 
-							   'Product', 'Cart' );
+							   'Product', 'Cart','User' );
 
 /*
 | -------------------------------------------------------------------
@@ -134,4 +134,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('ModelProduct', 'ModelCart');
+$autoload['model'] = array('ModelProduct', 'ModelCart', 'ModelUser');

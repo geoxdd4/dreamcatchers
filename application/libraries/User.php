@@ -2,12 +2,40 @@
 
 class User {
 
-	//login
+	var $email = NULL;
+	var $name  = NULL;
+	var $surname = NULL;
 	
-	//mail
+	public function getEmail(){
+		return $this->email; 
+	}
 	
-	//name
+	public function setEmail($email){
+		$this->email = $email;
+	}
 	
-	//surname
+	public function getName(){
+		return $this->name; 
+	}
+	
+	public function setName($name){
+		$this->name = $name;		
+	}
+	
+	public function getSurname(){
+		return $this->surname;
+	}
+	
+	public function setSurname($surname){
+		$this->surname = $surname;		
+	}	
+	
+	public function getPassword(){
+		return $this->password;
+	}
+	
+	public function setPassword($password){
+		$this->password = $password;		
+	}
 	
 }
