@@ -6,20 +6,22 @@ class HelperCart {
     {
 		
 		$listProducts = NULL;
-		$items = $cart->get();
+		$items = $cart->getItems();
 		
 		if ( empty($items) ){
 			return $listProducts;
 		} 
 		
-		$arrayKeys = array_keys( $this->helpersession->getCart()->get() );
+		$arrayKeys = array_keys( $items );
 
 		foreach (  $arrayKeys as $arrayKey  ){
 			if ( NULL == $listProducts ){
-				$listProducts = "( " . $arrayKey ; 
+				$listProducts = " ( '" . $arrayKey ."'" ; 
+			}else{
+				$listProducts .= ", '" . $arrayKey . "' "; 
 			}
-			$listProducts += "," . $arrayKey ; 
 		}
+		$listProducts .= " ) ";
 		return $listProducts;
     }
 	

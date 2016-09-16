@@ -10,8 +10,8 @@ class ModelCart extends CI_Model {
 	
 	// get cart summary / first cart view
 	public function getCartSummary(){
-		$cart = $this->HelperSession->getCart();
-		$listeProducts = $this->HelperCart->getProductsListForModelQuery( $cart ) ;
+		$cart = $this->helpersession->getCart();
+		$listeProducts = $this->helpercart->getProductsListForModelQuery( $cart ) ;
 		
 		if ( NULL == $listeProducts){
 			return Array();
@@ -20,14 +20,27 @@ class ModelCart extends CI_Model {
 		$query = $this->db->query("select reference, name, diameter, price, 0 as quantity, 0 as total 
 								   from product where ( reference ) in ".$listeProducts);
 		
-		return $query->result();
+		$rows = $query->result();
+		$items = $cart->getItems();
+		
+		foreach(  $rows as $row  ){
+			$currentReference = $row->reference;
+			$quantity = $items[$currentReference];
+			$price = $row->price;
+			
+			$row->quantity = $quantity;
+			$row->total = $this->helperprice->format($quantity * $price);
+			$row->price = $this->helperprice->format($price);
+		}
+		
+		return $rows;
 	}
 	
 	
 	//total price for all the products in cart
 	public function getPrice(){
 		
-		$arrayKeys = array_keys( $this->helpersession->getCart()->get() );
+		$arrayKeys = array_keys( $this->helpersession->getCart()->getItems() );
 		$total = 0;
 		
 		foreach($arrayKeys as $key){
@@ -43,11 +56,13 @@ class ModelCart extends CI_Model {
 	public function getPriceByProduct($product){
 		
 		$reference = $product->reference;
-		$quantity  = $this->helpersession->getCart()->get()[$reference];
+		$items     = $this->helpersession->getCart()->getItems();
+		$quantity  = $items[$reference];
 		
 		$query = $this->db->query("SELECT sum( price ) * ? as total  
-								   FROM product WHERE reference = ? ", array($quantity ,$reference));		
-		return $query->result()[0]->total;
+								   FROM product WHERE reference = ? ", array($quantity ,$reference));
+		$result = $query->result();	
+		return $result[0]->total;
 	}
 
 }

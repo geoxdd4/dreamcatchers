@@ -1,19 +1,4 @@
-@font-face {
-    font-family: "futura";
-    src: url('../fonts/Futura Light BT.ttf');
-}
-@font-face {
-    font-family: "futura";
-    font-style: italic;
-    src: url('../fonts/Futura Light Italic BT.ttf');
-}
-@font-face {
-    font-family: "futura";
-    font-weight: bold;
-    src: url('../fonts/Futura Medium BT.ttf');
-}
 
-
-*{
+*, body{
 	font-family: "Roboto";
 }

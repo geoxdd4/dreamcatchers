@@ -3,28 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ControllerCart extends CI_Controller {
 
-	var $cartName = "CART";
-
 	public function index()
 	{	
+		
 		$data['title'] = "Panier";
 		$data['contents'] = "ViewCartSummary";
-		
-		$cart = $this->HelperSession->getCart();
-		
-		
-		
-		
-		//reference
-		//libelle
-		//diam
-		//prix
-		//qte
-		//total
-		
-		
-		
+
 		$this->load->view('templates/ViewMain',$data);
+	}
+	
+	public function ajaxGet(){
+		$cartSummary = $this->ModelCart->getCartSummary();
+		echo json_encode( $cartSummary );
 	}
 	
 	public function add( $reference )
@@ -62,6 +52,56 @@ class ControllerCart extends CI_Controller {
 		$data[ 'cartPriceFromDb' ] = $cartPriceFromDb;
 		$this->load->view('templates/ViewMain',$data);
 		
+	}
+
+	public function ajaxAdd(  ){
+		
+		//add ref
+		//$post = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+		if (!isset($_POST['reference'])){
+			return;
+		}
+		
+		$reference = $_POST['reference'];
+		$cart = $this->helpersession->getCart();
+		
+		$product = new Product();
+		$product->setReference( $reference );
+		
+		$cart->add( $product );
+		$this->helpersession->setCart($cart);
+		
+		$cartSummary = $this->ModelCart->getCartSummary();
+		echo json_encode( $cartSummary );
+		
+	}
+	
+	public function ajaxRemove(){
+		
+		//add ref
+		//$post = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+		if (!isset($_POST['reference'])){
+			return;
+		}
+		
+		$reference = $_POST['reference'];
+		$cart = $this->helpersession->getCart();
+		
+		$product = new Product();
+		$product->setReference( $reference );
+		
+		$cart->remove( $product );
+		$this->helpersession->setCart($cart);
+		
+		$cartSummary = $this->ModelCart->getCartSummary();
+		echo json_encode( $cartSummary );
+		
+	}
+	
+	public function connection(){
+		$data['title'] = "Panier";
+		$data['contents'] = "ViewCartConnection";
+		$this->load->view('templates/ViewMain',$data);	
 	}
 		
 }

@@ -17,16 +17,27 @@ class Cart {
 	}
 	
 	public function remove( $product ){
+		//https://github.com/peachananr/loading-bar/blob/master/demo.html
+		$reference = $product->getReference();
+		
+		if ( array_key_exists( $reference, $this->items ) ){
+			$quantity = $this->items[$reference];
+			$quantity --;
+			$this->items[$reference] = $quantity;
+			if ( $quantity <= 0){
+				unset($this->items[$reference]);	
+			}
+		}
 		
 	}
 	
 	public function getQuantity(){
-		
-		$arrayKeys = array_keys( $this->get() );
+		$item = $this->getItems();
+		$arrayKeys = array_keys( $item );
 		$total = 0;
 		
 		foreach($arrayKeys as $key){
-			$total += $this->get()[ $key ];
+			$total += $item[ $key ];
 		}
 		return $total;
 	}
@@ -37,8 +48,7 @@ class Cart {
 		
 	}
 	
-	public function get(){
-		$total = 0;
+	public function getItems(){
 		return $this->items;
 	}
 	

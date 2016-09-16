@@ -10,7 +10,7 @@ Produit ajouté avec succès.</br>
 </br>
 
 <?= $productFromDb->name ?> diam <?= $productFromDb->diameter ?> cm</br>
-Quantité : <?= $this->helpersession->getCart()->get()[ $productFromDb->reference ] ?></br>
+Quantité : <?= $this->helpersession->getCart()->getItems()[ $productFromDb->reference ] ?></br>
 Total : <?= $this->helperprice->format($productPriceFromDb) ?></br>
 </br>
 

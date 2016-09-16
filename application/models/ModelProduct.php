@@ -16,7 +16,7 @@ class ModelProduct extends CI_Model {
 	public function getByReference($reference){
 		$query = $this->db->query("SELECT * FROM product WHERE reference = ? ", array($reference));		
 		$result = $query->result();
-		return empty( $result ) ? $result : $query->result()[0];
+		return empty( $result ) ? $result : $result[0];
 	}
 
 }

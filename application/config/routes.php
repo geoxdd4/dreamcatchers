@@ -52,8 +52,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'ControllerWelcome';
 $route['home'] = 'ControllerWelcome';
 $route['products'] = 'ControllerProducts';
-$route['cart'] = 'ControllerCart';
+
+
+//add product to cart from product view
 $route['cart/add/(:any)'] = 'ControllerCart/add/$1';
+
+//1 - cart summary
+$route['cart'] = 'ControllerCart';
+$route['ajax/cart/get'] = 'ControllerCart/ajaxget';
+$route['ajax/cart/add'] = 'ControllerCart/ajaxAdd';
+$route['ajax/cart/remove'] = 'ControllerCart/ajaxRemove';
+
+//2 - connect / suscribe
+$route['cart/connection'] = 'ControllerCart/connection';
+$route['cart/connection/check'] = 'ControllerConnection/index';
+
 
 
 $route['404_override'] = '';
